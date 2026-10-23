@@ -1,0 +1,157 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "claude-motion-studio/episode.schema.json",
+  "title": "Episode",
+  "description": "One reel. Every time is in seconds on the voice-over (word starts from Whisper). The engine derives every frame from this file: frame = round(seconds * fps). Two formats share the file: 'cheatsheet' (cards on a grid) and 'buildup' (layers on one evolving object).",
+  "type": "object",
+  "required": ["id", "audio", "title", "end", "subs"],
+  "properties": {
+    "id": { "type": "string", "description": "Short id, also used in the composition id (no underscores in Remotion ids).", "examples": ["ep11"] },
+    "format": { "enum": ["cheatsheet", "buildup"], "default": "cheatsheet", "description": "Absent = cheatsheet." },
+    "lang": { "type": "string", "description": "Language of the voice and on-screen text (captions may be in another language).", "examples": ["en", "ar"] },
+    "style": { "type": "string", "description": "Name of the visual style/palette preset.", "examples": ["s1-deep-sea"] },
+    "audio": { "type": "string", "description": "Voice-over file name inside the episode's audio folder.", "examples": ["vo.wav"] },
+    "voDuration": { "type": "number", "description": "Length of the VO in seconds." },
+
+    "hook": {
+      "type": "object",
+      "description": "Opening 2-3 s. 'slam': lines[0] from the left, lines[1] from the right, impact flash, then they fly into the title. 'vs': title.line1 is split on ' vs '.",
+      "properties": {
+        "style": { "enum": ["slam", "vs"], "default": "vs" },
+        "lines": { "type": "array", "items": { "type": "string" }, "minItems": 2, "maxItems": 2 },
+        "at": { "type": "number", "default": 0 }
+      }
+    },
+
+    "title": {
+      "type": "object",
+      "required": ["line1"],
+      "description": "Line 2 is drawn in the accent colour with an underline sweep. 'sub' symbols '=', '+', '·' are tinted. Build-up episodes use one 'at' for the whole title.",
+      "properties": {
+        "line1": { "type": "string" },
+        "line1At": { "type": "number" },
+        "line2": { "type": "string" },
+        "line2At": { "type": "number" },
+        "sub": { "type": "string" },
+        "subAt": { "type": "number" },
+        "at": { "type": "number" }
+      }
+    },
+
+    "series": {
+      "type": ["object", "null"],
+      "description": "Shows a 'PART n/of' badge for the whole video.",
+      "properties": { "part": { "type": "integer" }, "of": { "type": "integer" } }
+    },
+
+    "cards": {
+      "type": "array",
+      "description": "Cheatsheet only. 2-6 cards, always 2 columns; an odd last card spans the full width.",
+      "minItems": 2,
+      "maxItems": 6,
+      "items": {
+        "type": "object",
+        "required": ["n", "icon", "label", "at"],
+        "properties": {
+          "n": { "type": "string", "description": "Number shown on the card, as given ('07' is fine for a Part 2).", "examples": ["01"] },
+          "icon": { "type": "string", "description": "Explainer/icon kind. The engine maps each kind to a drawer animation and a static icon.", "examples": ["chunk", "vector", "database", "tools", "loop"] },
+          "label": { "type": "string", "description": "<= 3 words." },
+          "at": { "type": "number", "description": "Spoken label word: camera arrives, card lights up." },
+          "add": { "type": "string", "description": "Accent line, <= 4 words. Explainer phase A starts here." },
+          "addAt": { "type": "number" },
+          "body": { "type": "string", "description": "<= ~44 characters (2 lines at 40 px). Explainer phase B starts here." },
+          "bodyAt": { "type": "number" }
+        }
+      }
+    },
+
+    "layers": {
+      "type": "array",
+      "description": "Buildup only. 5-8 layers that dock onto the hero object in order.",
+      "minItems": 2,
+      "maxItems": 8,
+      "items": {
+        "type": "object",
+        "required": ["n", "kind", "label", "at"],
+        "properties": {
+          "n": { "type": "string" },
+          "kind": { "type": "string", "description": "Drawing kind; a set of kinds can select a drawing family.", "examples": ["model", "prompt", "app", "tools", "rag", "agent", "guard"] },
+          "label": { "type": "string" },
+          "at": { "type": "number", "description": "Layer starts docking." },
+          "caption": { "type": "string", "description": "<= 30 chars, accent colour, under the kinetic word." },
+          "captionAt": { "type": "number" },
+          "note": { "type": "string", "description": "<= 30 chars, the payoff line." },
+          "noteAt": { "type": "number" }
+        }
+      }
+    },
+
+    "kinetic": {
+      "type": "array",
+      "description": "Buildup: one big word at a time at the top. Each lands on its spoken word.",
+      "items": {
+        "type": "object",
+        "required": ["word", "at"],
+        "properties": { "word": { "type": "string" }, "at": { "type": "number" } }
+      }
+    },
+
+    "emphasis": {
+      "type": "array",
+      "description": "At most 3 pop words per video. A word already visible in a panel or pill pops in place.",
+      "maxItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["word", "at"],
+        "properties": { "word": { "type": "string" }, "at": { "type": "number" } }
+      }
+    },
+
+    "beats": {
+      "type": "array",
+      "description": "End beats, in time order.",
+      "items": {
+        "type": "object",
+        "required": ["kind", "at"],
+        "properties": {
+          "kind": {
+            "enum": ["allCards", "question", "insight", "cta", "next"],
+            "description": "allCards: pull back to the full sheet. question: a pill with a question. insight: 'what people miss' panel. cta: call to action (with 'keyword' = big comment-keyword chip). next: small 'Part 2 ->' card."
+          },
+          "at": { "type": "number" },
+          "text": { "type": "string" },
+          "keyword": { "type": "string", "description": "cta only. Long keywords shrink to fit the chip." },
+          "text2": { "type": "string", "description": "cta only: the line under the chip (what they get)." },
+          "text2At": { "type": "number" }
+        }
+      }
+    },
+
+    "end": {
+      "type": "object",
+      "required": ["logoAt", "holdUntil"],
+      "properties": {
+        "logoAt": { "type": "number", "description": "Wordmark draws on. Everything is still from logoAt + 1.25 s." },
+        "holdUntil": { "type": "number", "description": "Video length. Keep >= logoAt + 1.3 s." }
+      }
+    },
+
+    "subs": {
+      "type": "array",
+      "description": "Captions per spoken phrase. No overlaps. 'ar' is drawn (RTL, max 2 lines, auto-split if longer); 'en' is the source text.",
+      "items": {
+        "type": "object",
+        "required": ["start", "end"],
+        "properties": {
+          "start": { "type": "number" },
+          "end": { "type": "number" },
+          "en": { "type": "string" },
+          "ar": { "type": "string" }
+        }
+      }
+    }
+  },
+  "allOf": [
+    { "if": { "properties": { "format": { "const": "buildup" } }, "required": ["format"] }, "then": { "required": ["layers"] }, "else": { "required": ["cards"] } }
+  ]
+}

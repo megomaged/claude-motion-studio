@@ -1,0 +1,276 @@
+{
+  "id": "ep11",
+  "format": "buildup",
+  "lang": "en",
+  "style": "s1-deep-sea",
+  "audio": "vo.wav",
+  "voDuration": 80.6,
+  "hook": {
+    "style": "slam",
+    "lines": [
+      "Every AI product",
+      "is built in layers"
+    ],
+    "at": 0.0
+  },
+  "title": {
+    "line1": "Build an AI app",
+    "line2": "7 layers, from zero",
+    "at": 2.72
+  },
+  "layers": [
+    {
+      "n": "01",
+      "kind": "model",
+      "label": "The model",
+      "at": 5.68,
+      "caption": "Reads · writes · answers",
+      "captionAt": 10.66,
+      "note": "Knows nothing about you",
+      "noteAt": 13.2
+    },
+    {
+      "n": "02",
+      "kind": "prompt",
+      "label": "The prompt",
+      "at": 15.34,
+      "caption": "Role · context · rules",
+      "captionAt": 17.34,
+      "note": "Same model, new behavior",
+      "noteAt": 21.28
+    },
+    {
+      "n": "03",
+      "kind": "app",
+      "label": "The app",
+      "at": 24.04,
+      "caption": "Model + prompt + code",
+      "captionAt": 25.82,
+      "note": "An AI application",
+      "noteAt": 30.38
+    },
+    {
+      "n": "04",
+      "kind": "tools",
+      "label": "Tools",
+      "at": 32.22,
+      "caption": "Email · web · database",
+      "captionAt": 34.12,
+      "note": "It doesn't just talk. It acts.",
+      "noteAt": 39.1
+    },
+    {
+      "n": "05",
+      "kind": "rag",
+      "label": "RAG",
+      "at": 40.26,
+      "caption": "Answers from your docs",
+      "captionAt": 42.1,
+      "note": "Knows your business",
+      "noteAt": 46.22
+    },
+    {
+      "n": "06",
+      "kind": "agent",
+      "label": "The agent",
+      "at": 48.2,
+      "caption": "Decides · checks · next step",
+      "captionAt": 50.08,
+      "note": "Until the job is done",
+      "noteAt": 55.06
+    },
+    {
+      "n": "07",
+      "kind": "guard",
+      "label": "Guardrails & evals",
+      "at": 56.24,
+      "caption": "Limits + tests on every answer",
+      "captionAt": 59.32,
+      "note": "Safe to ship",
+      "noteAt": 63.58
+    }
+  ],
+  "kinetic": [
+    {
+      "word": "LAYERS",
+      "at": 1.92
+    },
+    {
+      "word": "LLM",
+      "at": 9.86
+    },
+    {
+      "word": "PROMPT",
+      "at": 16.3
+    },
+    {
+      "word": "APP",
+      "at": 24.92
+    },
+    {
+      "word": "TOOLS",
+      "at": 33.36
+    },
+    {
+      "word": "RAG",
+      "at": 41.44
+    },
+    {
+      "word": "AGENT",
+      "at": 49.26
+    },
+    {
+      "word": "GUARDRAILS",
+      "at": 57.5
+    },
+    {
+      "word": "EVALS",
+      "at": 61.0
+    },
+    {
+      "word": "STACK",
+      "at": 74.28
+    }
+  ],
+  "beats": [
+    {
+      "kind": "insight",
+      "at": 65.62,
+      "text": "Nobody builds models from scratch. AI engineers build the layers."
+    },
+    {
+      "kind": "cta",
+      "at": 73.52,
+      "keyword": "STACK",
+      "text": "Comment STACK",
+      "text2": "Get the AI app stack blueprint",
+      "text2At": 75.12
+    }
+  ],
+  "end": {
+    "logoAt": 80.9,
+    "holdUntil": 83.6
+  },
+  "subs": [
+    {
+      "start": 0.0,
+      "end": 5.2,
+      "en": "Every AI product you use is built in layers. Let's build one from zero in one minute.",
+      "ar": "كل منتج AI بتستخدمه متبني طبقات. يلا نبني واحد من الصفر في دقيقة"
+    },
+    {
+      "start": 5.68,
+      "end": 7.06,
+      "en": "Layer 1, the model.",
+      "ar": "الطبقة ١: الموديل"
+    },
+    {
+      "start": 7.38,
+      "end": 10.52,
+      "en": "Train it on billions of pages and you get an LLM.",
+      "ar": "درّبه على مليارات الصفحات، يطلعلك LLM"
+    },
+    {
+      "start": 10.66,
+      "end": 14.94,
+      "en": "It reads, writes, and answers. But it knows nothing about you.",
+      "ar": "بيقرا ويكتب ويجاوب… بس ميعرفش عنك أي حاجة"
+    },
+    {
+      "start": 15.34,
+      "end": 16.9,
+      "en": "Layer 2, the prompt.",
+      "ar": "الطبقة ٢: الـ Prompt"
+    },
+    {
+      "start": 17.34,
+      "end": 20.9,
+      "en": "Give it a role, the context, and rules for how to answer.",
+      "ar": "اديله دور، وسياق، وقواعد يجاوب بيها"
+    },
+    {
+      "start": 21.28,
+      "end": 23.66,
+      "en": "Same model, completely different behavior.",
+      "ar": "نفس الموديل… تصرّف مختلف تمامًا"
+    },
+    {
+      "start": 24.04,
+      "end": 25.58,
+      "en": "Layer 3, the app.",
+      "ar": "الطبقة ٣: الـ App"
+    },
+    {
+      "start": 25.82,
+      "end": 31.86,
+      "en": "Wrap the model and the prompt in code. And now it's a product people can use. An AI application.",
+      "ar": "لِف الموديل والـ Prompt بكود، فيبقى منتج الناس تستخدمه: AI Application"
+    },
+    {
+      "start": 32.22,
+      "end": 33.66,
+      "en": "Layer 4, tools.",
+      "ar": "الطبقة ٤: الأدوات"
+    },
+    {
+      "start": 34.12,
+      "end": 37.24,
+      "en": "Let it send an email, search the web, or query a database.",
+      "ar": "خليه يبعت إيميل، ويدوّر على النت، ويسأل قاعدة بيانات"
+    },
+    {
+      "start": 37.62,
+      "end": 41.7,
+      "en": "Now it doesn't just talk, it acts. Layer 5, rag.",
+      "ar": "دلوقتي مش بيتكلم بس… بيعمل. الطبقة ٥: الـ RAG"
+    },
+    {
+      "start": 42.1,
+      "end": 47.74,
+      "en": "Connect your company's documents and tell it to answer only from them. Now it knows your business.",
+      "ar": "وصّل ملفات شركتك وقوله يجاوب منها بس. دلوقتي فاهم شغلك"
+    },
+    {
+      "start": 48.2,
+      "end": 49.7,
+      "en": "Layer 6, the agent.",
+      "ar": "الطبقة ٦: الـ Agent"
+    },
+    {
+      "start": 50.08,
+      "end": 56.24,
+      "en": "Let it decide which tool to use, check the result, and choose the next step until the job is done.",
+      "ar": "خليه يقرر يستخدم أنهي أداة، ويراجع النتيجة، ويختار الخطوة الجاية لحد ما الشغل يخلص"
+    },
+    {
+      "start": 56.24,
+      "end": 59.08,
+      "en": "Layer 7, guardrails and evals.",
+      "ar": "الطبقة ٧: الـ Guardrails والـ Evals"
+    },
+    {
+      "start": 59.32,
+      "end": 65.32,
+      "en": "Limits on what it's allowed to do, and tests that score every answer. This is what makes it safe to ship.",
+      "ar": "حدود للي مسموحله يعمله، واختبارات بتقيّم كل إجابة. ده اللي بيخليه آمن تنزّله"
+    },
+    {
+      "start": 65.62,
+      "end": 69.14,
+      "en": "Here's the secret. Almost nobody builds models from scratch.",
+      "ar": "السر: تقريبًا محدش بيبني موديلات من الصفر"
+    },
+    {
+      "start": 69.68,
+      "end": 74.76,
+      "en": "AI engineers build these layers on top. That's the job. Comment. Stack.",
+      "ar": "مهندسين الـ AI بيبنوا الطبقات دي فوقه. ده الشغل. اكتب STACK في الكومنت"
+    },
+    {
+      "start": 75.12,
+      "end": 80.6,
+      "en": "And I'll send you the blueprint. Every layer. The tools to build it. And the mistakes to avoid.",
+      "ar": "وأبعتلك الـ Blueprint: كل طبقة، وأدوات بنائها، والغلطات اللي تتجنبها"
+    }
+  ]
+}
