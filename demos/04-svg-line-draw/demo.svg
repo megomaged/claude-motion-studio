@@ -1,0 +1,89 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1080" height="1080" viewBox="0 0 1080 1080">
+  <!-- Claude Motion Studio · demo 04 · pure SVG + CSS keyframes (no JS). Opens and plays in any browser. -->
+  <style>
+    :root { --ink:#071126; --sea:#0A1B41; --gold:#F6D98A; --lav:#E0CAE9; --white:#FAF4EC; }
+    .tile { fill: #112456; stroke: rgba(224,202,233,0.22); stroke-width: 1.5;
+            transform-box: fill-box; transform-origin: center;
+            animation: tileIn .7s cubic-bezier(.16,1,.3,1) both, lit .7s ease-out both; }
+    .ic   { fill: none; stroke: var(--white); stroke-width: 7; stroke-linecap: round; stroke-linejoin: round;
+            stroke-dasharray: 1; stroke-dashoffset: 1;
+            animation: draw 1s cubic-bezier(.65,0,.35,1) both; }
+    .acc  { fill: var(--gold); transform-box: fill-box; transform-origin: center;
+            animation: pop .55s cubic-bezier(.34,1.56,.64,1) both; }
+    .wire { fill: none; stroke: rgba(246,217,138,0.35); stroke-width: 3; stroke-dasharray: 1; stroke-dashoffset: 1;
+            animation: draw 1.3s cubic-bezier(.65,0,.35,1) 2.35s both; }
+    .spark{ fill: none; stroke: var(--gold); stroke-width: 9; stroke-linecap: round;
+            stroke-dasharray: .035 1; stroke-dashoffset: .035; filter: url(#glow);
+            animation: travel 1.6s cubic-bezier(.45,0,.55,1) 3.1s both; }
+    .float{ transform-box: fill-box; transform-origin: center; animation: float 5s ease-in-out both; }
+    .title{ font: 700 54px 'Manrope','Helvetica Neue',Arial,sans-serif; fill: var(--white); letter-spacing: -0.5px;
+            animation: rise .9s cubic-bezier(.16,1,.3,1) .1s both; }
+    .sub  { font: 600 22px 'Inter','Helvetica Neue',Arial,sans-serif; fill: rgba(250,244,236,.55); letter-spacing: 4px;
+            animation: rise .9s cubic-bezier(.16,1,.3,1) .25s both; }
+    .tag  { font: 600 22px 'Inter','Helvetica Neue',Arial,sans-serif; fill: rgba(250,244,236,.62); letter-spacing: 3.5px; }
+    @keyframes tileIn { from { opacity: 0; transform: scale(.82); } to { opacity: 1; transform: scale(1); } }
+    @keyframes lit    { 0% { stroke: rgba(224,202,233,.22); stroke-width: 1.5; }
+                        25% { stroke: #F6D98A; stroke-width: 4; } 100% { stroke: rgba(246,217,138,.55); stroke-width: 2; } }
+    @keyframes draw   { to { stroke-dashoffset: 0; } }
+    @keyframes pop    { from { transform: scale(0); } to { transform: scale(1); } }
+    @keyframes travel { from { stroke-dashoffset: .035; } to { stroke-dashoffset: -1; } }
+    @keyframes rise   { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+    @keyframes float  { 0% { transform: translateY(0); } 50% { transform: translateY(-6px); } 100% { transform: translateY(0); } }
+  </style>
+  <defs>
+    <radialGradient id="bg" cx="30%" cy="20%" r="90%">
+      <stop offset="0" stop-color="#1D358E"/><stop offset=".55" stop-color="#0A1B41"/><stop offset="1" stop-color="#071126"/>
+    </radialGradient>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="6" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+  <rect width="1080" height="1080" fill="url(#bg)"/>
+
+  <text class="title" x="120" y="196">Draw. Fill. Connect.</text>
+  <text class="sub" x="122" y="244">STROKE-DASH · STAGGER · PATHLENGTH=1</text>
+
+  <!-- connector wire behind the tiles (S-curve through all six centres) -->
+  <path class="wire" pathLength="1" d="M270 440 C 405 440 405 440 540 440 S 675 440 810 440 C 930 440 930 730 810 730 S 675 730 540 730 S 405 730 270 730"/>
+
+  <g class="float" style="animation-delay:0s">
+    <!-- row 1 -->
+    <rect class="tile" x="160" y="330" width="220" height="220" rx="44" style="animation-delay:.05s, 3.10s"/>
+    <rect class="tile" x="430" y="330" width="220" height="220" rx="44" style="animation-delay:.12s, 3.58s"/>
+    <rect class="tile" x="700" y="330" width="220" height="220" rx="44" style="animation-delay:.19s, 3.80s"/>
+    <!-- row 2 -->
+    <rect class="tile" x="160" y="620" width="220" height="220" rx="44" style="animation-delay:.26s, 4.70s"/>
+    <rect class="tile" x="430" y="620" width="220" height="220" rx="44" style="animation-delay:.33s, 4.22s"/>
+    <rect class="tile" x="700" y="620" width="220" height="220" rx="44" style="animation-delay:.40s, 4.00s"/>
+
+    <!-- 1 play -->
+    <circle class="ic" pathLength="1" cx="270" cy="440" r="58" style="animation-delay:.35s"/>
+    <path class="acc" d="M256 414 L292 440 L256 466 Z" style="animation-delay:1.35s"/>
+    <!-- 2 chat -->
+    <path class="ic" pathLength="1" d="M488 400 h104 a18 18 0 0 1 18 18 v50 a18 18 0 0 1 -18 18 h-58 l-28 24 v-24 h-18 a18 18 0 0 1 -18 -18 v-50 a18 18 0 0 1 18 -18 Z" style="animation-delay:.5s"/>
+    <circle class="acc" cx="514" cy="443" r="7" style="animation-delay:1.5s"/>
+    <circle class="acc" cx="540" cy="443" r="7" style="animation-delay:1.58s"/>
+    <circle class="acc" cx="566" cy="443" r="7" style="animation-delay:1.66s"/>
+    <!-- 3 chart -->
+    <path class="ic" pathLength="1" d="M752 390 v100 h116" style="animation-delay:.65s"/>
+    <path class="ic" pathLength="1" d="M770 470 l26 -30 l22 18 l40 -46" style="animation-delay:.9s; stroke: #F6D98A"/>
+    <circle class="acc" cx="858" cy="412" r="9" style="animation-delay:1.75s"/>
+    <!-- 4 sparkle -->
+    <path class="ic" pathLength="1" d="M270 668 C 276 708 282 714 322 730 C 282 746 276 752 270 792 C 264 752 258 746 218 730 C 258 714 264 708 270 668 Z" style="animation-delay:.8s"/>
+    <circle class="acc" cx="318" cy="680" r="9" style="animation-delay:1.9s"/>
+    <!-- 5 layers -->
+    <path class="ic" pathLength="1" d="M540 680 l68 32 l-68 32 l-68 -32 Z" style="animation-delay:.95s"/>
+    <path class="ic" pathLength="1" d="M472 740 l68 32 l68 -32" style="animation-delay:1.1s"/>
+    <path class="acc" d="M540 694 l38 18 l-38 18 l-38 -18 Z" style="animation-delay:2.0s"/>
+    <!-- 6 check -->
+    <circle class="ic" pathLength="1" cx="810" cy="730" r="58" style="animation-delay:1.1s"/>
+    <path class="ic" pathLength="1" d="M784 732 l18 18 l36 -38" style="animation-delay:1.55s; stroke: #F6D98A; stroke-width: 9"/>
+  </g>
+  <path class="spark" pathLength="1" d="M270 440 C 405 440 405 440 540 440 S 675 440 810 440 C 930 440 930 730 810 730 S 675 730 540 730 S 405 730 270 730"/>
+
+  <text class="tag" x="52" y="1036"><tspan fill="#F6D98A">04</tspan>  SVG LINE-DRAW + ICONS</text>
+  <g>
+    <rect x="814" y="1003" width="214" height="44" rx="22" fill="none" stroke="rgba(250,244,236,.22)" stroke-width="1.5"/>
+    <text class="tag" x="921" y="1033" text-anchor="middle" style="letter-spacing:1px">SVG + CSS only</text>
+  </g>
+</svg>
