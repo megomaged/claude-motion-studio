@@ -1,1 +1,18 @@
-{}
+{
+  "comp": { "name": "CMS Title Card", "width": 1920, "height": 1080, "fps": 30, "duration": 5 },
+  "font": "Manrope-ExtraBold",
+  "colors": { "bg": "#071126", "accent": "#F6D98A", "text": "#FAF4EC", "shape": "#1D358E" },
+  "ease": { "speed": 0, "influence": 75 },
+  "layers": [
+    { "name": "Ring", "type": "ring", "size": 500, "stroke": "shape", "strokeWidth": 40, "pos": [1530, 520],
+      "keys": { "scale": [[0, 0], [0.5, 110], [0.75, 100]], "rotation": [[0, -40], [5, 50]] } },
+    { "name": "Gold dot", "type": "dot", "size": 60, "fill": "accent", "pos": [1530, 270],
+      "keys": { "scale": [[0.9, 0], [1.25, 120], [1.45, 100]] } },
+    { "name": "Accent line", "type": "line", "size": [440, 12], "fill": "accent", "pos": [250, 640],
+      "keys": { "scaleX": [[0.6, 0], [1.3, 100]] } },
+    { "name": "Title", "type": "text", "text": "Motion, scripted.", "fontSize": 104, "fill": "text", "pos": [250, 560],
+      "keys": { "offsetY": [[0.8, 90], [1.45, 0]], "opacity": [[0.8, 0], [1.3, 100]] } },
+    { "name": "Subtitle", "type": "text", "text": "One .jsx builds every layer and keyframe", "fontSize": 42, "fill": "text", "pos": [252, 730],
+      "keys": { "opacity": [[1.3, 0], [1.9, 70]] } }
+  ]
+}
