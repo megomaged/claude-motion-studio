@@ -1,4 +1,4 @@
-# Recipe: Audio and export
+# Pipeline · Audio and export
 
 Voice on top, music clearly under it, SFX felt more than heard, a master at −14 LUFS, and a file that Instagram, Facebook and TikTok accept without re-processing surprises.
 
@@ -40,6 +40,20 @@ ffmpeg -i master.mp4 \
 - **GOP 60 at 30 fps** (a keyframe every 2 s) seeks and scrubs well.
 - **Size:** at these settings, 40–85 s reels land around 20–55 MB. If you need smaller, raise CRF to 20–21 before you touch resolution; grain and gradients cost the most bits.
 - Keep the master (CRF ~20 from the renderer) and make platform files from it; never re-encode a platform file.
+
+## GIF previews (README, docs, chat)
+A GIF is a preview, not the deliverable; make it from a dedicated master so the MP4 keeps every detail.
+```bash
+# 1. a half-scale, 15-fps render with slow full-frame drifts frozen (Remotion: an input prop the backdrop reads)
+npx remotion render <entry> <id> gif_master.mp4 --props='{"gif":true}' --scale=0.5 --every-nth-frame=2 --crf=10
+# 2. palette pass + ordered dither (stable between frames → small diffs)
+ffmpeg -i gif_master.mp4 -vf "fps=15,scale=540:-1:flags=lanczos,palettegen=max_colors=128:stats_mode=diff" pal.png
+ffmpeg -i gif_master.mp4 -i pal.png -lavfi "fps=15,scale=540:-1:flags=lanczos[x];[x][1:v]paletteuse=dither=bayer:bayer_scale=3:diff_mode=rectangle" -loop 0 demo.gif
+```
+- What costs bytes: anything that changes every pixel every frame — drifting gradient backdrops, full-frame flashes, rotating rings, blurred blobs, thousands of moving lines. Freeze or drop those for the preview only.
+- Measured on the kinetic-type demo: 3.8 MB (drifting backdrop, sierra dither) → 1.0 MB (frozen backdrop, bayer 3).
+- Still too big: 64 colours + `bayer_scale=2`, then a shorter loop. Keep ≥ 15 fps; below that motion stutters.
+- Short demo MP4s for docs: `-preset slow -crf 22 -pix_fmt yuv420p -movflags +faststart` (+ BT.709 tags); 5 s squares land at 0.25–0.75 MB, particle fields need CRF 26.
 
 ## Pitfalls we hit
 - Grain hides gradient banding but inflates file size noticeably. Keep it subtle (~4 %).

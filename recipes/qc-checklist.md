@@ -1,4 +1,4 @@
-# Recipe: QC checklist
+# Pipeline · QC checklist
 
 Nothing goes to the user until it passes this list, and every pass is backed by a command output or a frame you looked at. Paste the raw outputs into your report.
 
@@ -23,6 +23,9 @@ Check on the sheet and stills:
 - [ ] Something moves in every frame until the final hold; the hold is perfectly still.
 - [ ] Whip strip: motion blur only during the fast part, no blank or doubled frames.
 - [ ] Last frame: the full result (sheet / stack / CTA / logo), never black.
+
+### Short pieces and capability demos
+Look at frames at 25 / 50 / 75 % of every clip side by side (`templates/demo-kit/sheet.sh` makes a 5-frame strip). Ask of each row: does it look premium, does it clearly show the one capability, is anything clipped, overlapping, muddy, or frozen? Fix and re-sheet. Things this caught while building the demos: a word sliver peeking from its mask, a title running off the edge, a second scene bleeding into the first, a tap landing on empty space, rays reading as dots, a hold that went still.
 
 ## 2. Measure it
 ```bash
